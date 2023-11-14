@@ -68,13 +68,13 @@ const data = [
 ]
 const dashboard = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white text-black">
-      <header className="text-center mb-8">
-        <h1 className="text-4xl font-bold">Dashboard</h1>
-        <p className="text-lg">Welcome to your personalized dashboard.</p>
-      </header>
+    <div className="min-h-screen bg-white text-black px-4 sm:px-6 lg:px-8">
+    <header className="text-center mb-8">
+      <h1 className="text-4xl font-bold">Dashboard</h1>
+      <p className="text-lg">Welcome to your personalized dashboard.</p>
+    </header>
 
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-4">
+    <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                       <CardTitle className="text-sm font-medium">
@@ -182,29 +182,29 @@ const dashboard = () => {
 
   
       </section>
+      <div className="flex-1">
+          <ResponsiveContainer width="100%" height={350}>
+            <BarChart data={data}>
+              <XAxis
+                dataKey="name"
+                stroke="#888888"
+                fontSize={12}
+                tickLine={false}
+                axisLine={false}
+              />
+              <YAxis
+                stroke="#888888"
+                fontSize={12}
+                tickLine={false}
+                axisLine={false}
+                tickFormatter={(value) => `$${value}`}
+              />
+              <Bar dataKey="total" fill="#adfa1d" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
 
-      <footer className="flex text-center py-4">
-        <ResponsiveContainer width="60%" height={350}>
-        <BarChart data={data}>
-          <XAxis
-            dataKey="name"
-            stroke="#888888"
-            fontSize={12}
-            tickLine={false}
-            axisLine={false}
-          />
-          <YAxis
-            stroke="#888888"
-            fontSize={12}
-            tickLine={false}
-            axisLine={false}
-            tickFormatter={(value) => `$${value}`}
-          />
-          <Bar dataKey="total" fill="#adfa1d" radius={[4, 4, 0, 0]} />
-        </BarChart>
-        </ResponsiveContainer>
-
-        <div className="space-y-8 ">
+        <div className="flex-1 space-y-8">
           <div className="flex items-center">
             <Avatar className="h-9 w-9">
               <AvatarImage src="/avatars/01.png" alt="Avatar" />
@@ -264,8 +264,10 @@ const dashboard = () => {
             </div>
             <div className="ml-auto font-medium">+$39.00</div>
           </div>
-        </div>
-        <p className="text-sm">© 2023.</p>
+      </div>
+
+      <footer className="flex justify-center items-center text-center py-4">
+        <p className="text-sm">&copy; {new Date().getFullYear()}.Copywrite</p>
       </footer>
     </div>
   )
